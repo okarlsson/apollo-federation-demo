@@ -1,0 +1,26 @@
+service: accounts
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 4000
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  graphql:
+    handler: graphql.handler
+    events:
+      - http:
+          method: post
+          path: graphql
+  playground:
+    handler: playground.handler
+    events:
+      - http:
+          method: get
+          path: playground
